@@ -8,10 +8,10 @@ $$P = p + 150 - 100\times\frac{d}{365}$$
 
 このスクリプトでは $d$ をそのコンテストの終了日から**現在**までの経過日として、計算された減衰パフォーマンスを小数点四捨五入したものを以下のように表示します。
 
-![](images/vis2.png)
+![](images/vis3.png)
 
 他の列と同様に、以下の画像のようにソートできます。(画像は、[AtCoderPerformanceColorizer](https://greasyfork.org/ja/scripts/371693-atcoderperformancecolorizer) と組み合わせたものです)
 
-![](images/vis.png)
+![](images/vis4.png)
 
 注意 : コードの大半を ChatGPT にお願いして作成しました。
