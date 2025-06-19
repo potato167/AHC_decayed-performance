@@ -10,6 +10,8 @@ $$P = p + 150 - 100\times\frac{d}{365}$$
 
 ![](images/vis3.png)
 
+寄与が半分であると推測されるコンテストに関しては、表記を薄くしています。
+
 他の列と同様に、以下の画像のようにソートできます。(画像は、[AtCoderPerformanceColorizer](https://greasyfork.org/ja/scripts/371693-atcoderperformancecolorizer) と組み合わせたものです)
 
 ![](images/vis4.png)
