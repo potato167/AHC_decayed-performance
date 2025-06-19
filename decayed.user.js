@@ -78,8 +78,8 @@
             const perfText = $tds.eq(3).text().trim();
             const perf = parseFloat(perfText);
             const date = parseDate(dateText);
-            const year = date.getFullYear();
-            const yobi = date.getDay();
+            const isShortContest = (date.getFullYear() >= 2025) &&
+                       (date.getDay() !== 1 || date.getHours() !== 19 || date.getMinutes() !== 0);
 
             const td = document.createElement("td");
 
@@ -92,9 +92,13 @@
                 td.innerText = contrib.toString();
                 td.dataset.sort = contrib;
                 colorizeCellBackground(td, contrib);
+                if (isShortContest) {
+                    td.style.opacity = "0.6"; // 半透明にする
+                    td.title = "Half contest";
+                }
             }
 
-            // 6番目の位置に差し込む（before td[6]）
+            // 適切な位置に差し込む
             const target = $tds[4];
             $row[0].insertBefore(td, target);
         });
