@@ -3,7 +3,7 @@
 // @namespace    https://github.com/potato167/AHC_decayed-performance
 // @version      1.0
 // @description  AHCの寄与値をパフォと新レーティングの間に表示（色付き・ソート対応）
-// @match        https://atcoder.jp/users/*/history?contestType=heuristic
+// @match        https://atcoder.jp/users/*/history?contestType=heuristic*
 // @grant        none
 // ==/UserScript==
 
@@ -64,10 +64,12 @@
 
         // 1. ヘッダーに <th> をパフォーマンスと新レーティングの間に追加
         const $headerRow = $table.find("thead tr");
-        const $th = $('<th>減衰</th>');
+        const isJapanese = (typeof LANG !== "undefined") ? LANG === "ja" : true;
+        const label = isJapanese ? "減衰" : "Decayed";
+        const $th = $('<th>').text(label);
         $headerRow.find('th').eq(3).after($th); 
 
-        // 2. 各行に <td> を挿入（6番目）
+        // 2. 各行に <td> を挿入
         $table.find("tbody tr").each(function () {
             const $row = $(this);
             const $tds = $row.find("td");
@@ -76,6 +78,8 @@
             const perfText = $tds.eq(3).text().trim();
             const perf = parseFloat(perfText);
             const date = parseDate(dateText);
+            const year = date.getFullYear();
+            const yobi = date.getDay();
 
             const td = document.createElement("td");
 
@@ -102,12 +106,11 @@
         $table.DataTable({
             order: currentOrder,
             paging: false,
-            searching: false,
             info: false,
             lengthChange: false,
             columnDefs: [
                 {
-                    targets: 6, // 寄与列の位置
+                    targets: 4, // 寄与列の位置
                     type: 'num'
                 }
             ]
